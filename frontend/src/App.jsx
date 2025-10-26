@@ -14,7 +14,7 @@ const App = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/add", {
+      const res = await axios.post("https://poornatasocietybackend.onrender.com/add", {
         username,
         email,
       });
@@ -32,7 +32,7 @@ const App = () => {
   // Fetch all users
   const handleGetUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("https://poornatasocietybackend.onrender.com/users");
       setUsers(res.data);
     } catch (err) {
       console.error("Error fetching users:", err);
