@@ -1,79 +1,68 @@
 import React, { useState } from "react";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login Data:", formData);
-    // 🔗 Later: send POST request to backend (e.g. /api/login)
+  const handleGetOTP = () => {
+    console.log("Email:", email);
+    // Send OTP to email
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
-        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-          Welcome Back 👋
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Username */}
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">
-              Username
-            </label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              placeholder="Enter your username"
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              placeholder="Enter your password"
-            />
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-all"
-          >
+    <div className="flex min-h-screen bg-white">
+      
+      {/* Left Side - Login Form */}
+      <div className="w-full md:w-1/2 flex justify-center items-center p-6 md:p-12">
+        <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
+          <h2 className="text-3xl font-bold mb-2 text-center text-gray-800">
             Login
-          </button>
-        </form>
+          </h2>
+          <p className="text-center text-gray-500 mb-6">
+            Sign in using your registered email
+          </p>
 
-        {/* Register Link */}
-        <p className="text-center text-gray-600 mt-6">
-          Don’t have an account?{" "}
-          <a href="/register" className="text-blue-600 hover:underline font-semibold">
-            Register
-          </a>
-        </p>
+          {/* Email Field */}
+          <div className="mb-6">
+            <label className="block text-gray-700 mb-2 font-medium">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg 
+              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          {/* Get OTP Button */}
+          <button
+            onClick={handleGetOTP}
+            className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg 
+            hover:bg-blue-700 transition duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            Get OTP
+          </button>
+
+          {/* Register Link */}
+          <p className="mt-6 text-center text-gray-700 text-sm">
+            Don’t have an account?{" "}
+            <a href="/register" className="text-blue-600 hover:underline font-medium">
+              Register
+            </a>
+          </p>
+        </div>
+      </div>
+
+      {/* Right Side - Logo */}
+      <div className="hidden md:flex md:w-1/2 justify-center items-center bg-white">
+        <img 
+          src="/src/img/poornata logo.png" 
+          className="w-2/3 h-auto opacity-90" 
+          alt="Logo"
+        />
       </div>
     </div>
   );
