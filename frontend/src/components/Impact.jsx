@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles, Radio, Coffee, Building2, Store, ChefHat, Briefcase } from "lucide-react";
+import { Sparkles, Radio, Coffee, Building2, Store, ChefHat, Briefcase, Monitor } from "lucide-react";
 
 const Impact = () => {
   const initiatives = [
@@ -10,13 +10,7 @@ const Impact = () => {
       description: "Professional training sessions to enhance technical skills in wireless technology",
       color: "from-blue-500 to-blue-600"
     },
-    {
-      icon: <Coffee className="w-8 h-8" />,
-      image: "https://id-preview--9392b8e9-e3df-443f-b3b1-1f9926a5b1d6.lovable.app/assets/activity-1-IawE2d_D.jpg",
-      title: "Dosa Bhatti Business Setup",
-      description: "Gave Dosa Bhatti to a youth to make him independent and self-earning",
-      color: "from-orange-500 to-orange-600"
-    },
+    
     {
       icon: <Building2 className="w-8 h-8" />,
       image: "https://id-preview--9392b8e9-e3df-443f-b3b1-1f9926a5b1d6.lovable.app/assets/activity-1-IawE2d_D.jpg",
@@ -31,13 +25,14 @@ const Impact = () => {
       description: "Helped to set up a small shop to help 2 youth become self-dependent",
       color: "from-purple-500 to-purple-600"
     },
-    {
-      icon: <ChefHat className="w-8 h-8" />,
-      image: "https://id-preview--9392b8e9-e3df-443f-b3b1-1f9926a5b1d6.lovable.app/assets/activity-1-IawE2d_D.jpg",
-      title: "Hotel Cooking Training",
-      description: "Business handling and hotel cooking training session to enhance workers skills and boost up their earnings",
-      color: "from-red-500 to-red-600"
-    },
+   {
+  icon: <Monitor className="w-8 h-8" />, // or <Globe /> / <BarChart3 /> if you prefer
+  image: "https://img.freepik.com/premium-photo/digital-marketing-concept-social-media-business-technology-background_161452-1745.jpg",
+  title: "Digital Marketing Services",
+  description: "Helping NGOs and businesses grow their online presence through SEO, social media, and content marketing strategies.",
+  color: "from-blue-500 to-indigo-600"
+},
+
     {
       icon: <Briefcase className="w-8 h-8" />,
       image: "https://id-preview--9392b8e9-e3df-443f-b3b1-1f9926a5b1d6.lovable.app/assets/activity-1-IawE2d_D.jpg",
