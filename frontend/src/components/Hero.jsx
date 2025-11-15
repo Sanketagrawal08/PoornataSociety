@@ -21,7 +21,7 @@ export default function Hero() {
         className="absolute top-6 right-6 z-20 flex items-center gap-2 px-5 py-2 border-2 border-white rounded-lg text-white font-semibold hover:bg-white hover:text-gray-900 transition-all"
       >
         <User className="w-5 h-5" />
-        Register
+        Register / Login
       </button>
 
       {/* Background */}
