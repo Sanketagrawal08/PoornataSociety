@@ -1,6 +1,14 @@
-import { Router } from "express";
+import express from "express";
+import {
+  registerController,
+  loginController,
+  verifyOtpController,
+} from "../controllers/user.controller.js";
 
-const router = Router();
-    
+const router = express.Router();
 
-export default router
+router.post("/register", registerController);
+router.post("/login", loginController);
+router.post("/verify-otp", verifyOtpController);
+
+export default router;

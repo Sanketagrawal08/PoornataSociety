@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://sanketagrawal6969:VuXaZhWIlZLPeW9B@subscriptioncluster1.79bbl8b.mongodb.net/poornataDB?retryWrites=true&w=majority&appName=subscriptionCluster1",
+      process.env.MONGO_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -15,5 +15,4 @@ const connectDB = async () => {
   }
 };
 
-
-module.exports = connectDB;
+export default connectDB;
