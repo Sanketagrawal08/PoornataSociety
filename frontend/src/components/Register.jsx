@@ -14,44 +14,67 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- const handleGetOTP = async () => {
-  const { name, email, phoneNo } = formData;
+  const handleGetOTP = async () => {
+    const { name, email, phoneNo } = formData;
 
-  if (!name || !email) {
-    alert("Name and Email are required.");
-    return;
-  }
+    console.log("📌 Form Submitted:", formData);
 
-  setLoading(true);
-
-  try {
-    const response = await api.post("/api/auth/register", {
-      name,
-      email,
-      phone: phoneNo,
-    });
-
-    const data = response.data;
-    setLoading(false);
-
-    if (!data.success) {
-      alert(data.message);
+    if (!name || !email) {
+      alert("Name and Email are required.");
       return;
     }
 
-    localStorage.setItem("registerEmail", email);
+    setLoading(true);
 
-    alert("OTP Sent! Please verify your email.");
-    window.location.href = "/verify-otp";
+    try {
+      console.log("📤 Sending API Request to:", `/api/auth/register`);
+      console.log("📤 Payload:", {
+        name,
+        email,
+        phone: phoneNo,
+      });
 
-  } catch (error) {
-    console.error("Error:", error);
-    setLoading(false);
-    alert("Something went wrong.");
-  }
-};
+      const response = await api.post("/api/auth/register", {
+        name,
+        email,
+        phone: phoneNo,
+      });
 
+      console.log("📥 Raw Axios Response:", response);
 
+      const data = response.data;
+      console.log("📥 response.data:", data);
+
+      setLoading(false);
+
+      if (!data.success) {
+        console.log("❌ Backend returned error:", data.message);
+        alert(data.message);
+        return;
+      }
+
+      console.log("✅ Registration successful, storing email:", email);
+      localStorage.setItem("registerEmail", email);
+
+      alert("OTP Sent! Please verify your email.");
+
+      console.log("➡️ Redirecting to /verify-otp");
+      window.location.href = "/verify-otp";
+
+    } catch (error) {
+      console.log("🚨 Axios Error Object:", error);
+      if (error.response) {
+        console.error("❌ Server responded with error:", error.response.data);
+      } else if (error.request) {
+        console.error("❌ No response received:", error.request);
+      } else {
+        console.error("❌ Axios config error:", error.message);
+      }
+
+      setLoading(false);
+      alert("Something went wrong.");
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br bg-white">
