@@ -27,10 +27,49 @@ function generateOtpString() {
 
 async function sendOtpEmail(email, otp) {
   await transporter.sendMail({
-   from: `"NoReply"`,
+    from: `"Poornata Welfare Society" <u2414906@gmail.com>`,
     to: email,
-    subject: "Your OTP code",
-    text: `Your OTP is ${otp}. It will expire in 2 minutes.`,
+    subject: "Your One-Time Password (OTP) – Poornata Welfare Society",
+    text: `
+Dear User,
+
+Your One-Time Password (OTP) for login/verification is:
+
+🔐 OTP: ${otp}
+
+This code is valid for the next 2 minutes. 
+Please do not share it with anyone for security reasons.
+
+If you did not request this OTP, please ignore this message.
+
+Warm regards,  
+Poornata Welfare Society Team  
+NGO India Foundation  
+🌐 Website: https://ngoindiafoundation.org  
+    `,
+    html: `
+<div style="font-family: Arial, sans-serif; line-height: 1.6; font-size: 16px; color: #333;">
+  <p>Dear User,</p>
+
+  <p>Your One-Time Password (OTP) for login/verification is:</p>
+
+  <h2 style="color: #1a73e8; font-size: 28px; margin: 10px 0;">🔐 ${otp}</h2>
+
+  <p>This OTP is valid for <b>2 minutes</b>. Please do not share it with anyone.</p>
+
+  <p>If you did not request this OTP, simply ignore this email.</p>
+
+  <br>
+
+  <p>Warm regards,<br>
+  <b>Poornata Welfare Society Team</b><br>
+  NGO India Foundation</p>
+
+  <p>
+    🌐 <a href="https://ngoindiafoundation.org" target="_blank" style="color:#1a73e8;">Visit Our Website</a>
+  </p>
+</div>
+    `,
   });
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import api from "../api"; // Axios instance with baseURL
+import api from "../api";
+import { useAuth } from "../context/AuthContext";
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState("");
@@ -8,8 +9,8 @@ const VerifyOtp = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { loginUser } = useAuth();
 
-  // Load email saved at register step
   useEffect(() => {
     const storedEmail = localStorage.getItem("registerEmail");
     if (!storedEmail) {
@@ -20,43 +21,42 @@ const VerifyOtp = () => {
     setEmail(storedEmail);
   }, []);
 
- const handleVerify = async () => {
-  if (!otp) {
-    alert("Please enter OTP");
-    return;
-  }
-
-  setLoading(true);
-
-  try {
-    const response = await api.post("/api/auth/verify-otp", {
-      email,
-      otp,
-    });
-
-    const data = response.data;
-    setLoading(false);
-
-    if (!data.success) {
-      alert(data.message);
+  const handleVerify = async () => {
+    if (!otp) {
+      alert("Please enter OTP");
       return;
     }
 
-    if (data.token) {
-      localStorage.setItem("authToken", data.token);
+    setLoading(true);
+
+    try {
+      const response = await api.post("/api/auth/verify-otp", {
+        email,
+        otp,
+      });
+
+      const data = response.data;
+      setLoading(false);
+
+      if (!data.success) {
+        alert(data.message);
+        return;
+      }
+
+      // ✔ Save user + token globally via context
+      loginUser(data.user, data.token);
+
+      alert("OTP Verified Successfully!");
+
+      localStorage.removeItem("registerEmail");
+      navigate("/");
+
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+      alert("Something went wrong!");
     }
-
-    alert("OTP Verified Successfully!");
-    localStorage.removeItem("registerEmail");
-    navigate("/");
-
-  } catch (error) {
-    console.error(error);
-    setLoading(false);
-    alert("Something went wrong!");
-  }
-};
-
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-100 justify-center items-center p-4">
@@ -70,9 +70,7 @@ const VerifyOtp = () => {
         </p>
 
         <div className="mb-6">
-          <label className="block mb-2 text-gray-700 font-medium">
-            Enter OTP
-          </label>
+          <label className="block mb-2 text-gray-700 font-medium">Enter OTP</label>
           <input
             type="text"
             maxLength={6}
@@ -93,10 +91,7 @@ const VerifyOtp = () => {
 
         <p className="mt-4 text-center text-gray-600 text-sm">
           Didn’t receive the OTP?{" "}
-          <a
-            href="/login"
-            className="text-blue-600 font-medium hover:underline"
-          >
+          <a href="/login" className="text-blue-600 font-medium hover:underline">
             Try login again
           </a>
         </p>

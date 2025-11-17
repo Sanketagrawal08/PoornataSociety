@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../api";
+import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const Register = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const { loginUser } = useAuth(); // keep, will use in verify page
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,8 +18,6 @@ const Register = () => {
 
   const handleGetOTP = async () => {
     const { name, email, phoneNo } = formData;
-
-    console.log("📌 Form Submitted:", formData);
 
     if (!name || !email) {
       alert("Name and Email are required.");
@@ -27,50 +27,28 @@ const Register = () => {
     setLoading(true);
 
     try {
-      console.log("📤 Sending API Request to:", `/api/auth/register`);
-      console.log("📤 Payload:", {
-        name,
-        email,
-        phone: phoneNo,
-      });
-
       const response = await api.post("/api/auth/register", {
         name,
         email,
         phone: phoneNo,
       });
 
-      console.log("📥 Raw Axios Response:", response);
-
       const data = response.data;
-      console.log("📥 response.data:", data);
-
       setLoading(false);
 
       if (!data.success) {
-        console.log("❌ Backend returned error:", data.message);
         alert(data.message);
         return;
       }
 
-      console.log("✅ Registration successful, storing email:", email);
+      // Save email for verify screen
       localStorage.setItem("registerEmail", email);
 
       alert("OTP Sent! Please verify your email.");
-
-      console.log("➡️ Redirecting to /verify-otp");
       window.location.href = "/verify-otp";
 
     } catch (error) {
-      console.log("🚨 Axios Error Object:", error);
-      if (error.response) {
-        console.error("❌ Server responded with error:", error.response.data);
-      } else if (error.request) {
-        console.error("❌ No response received:", error.request);
-      } else {
-        console.error("❌ Axios config error:", error.message);
-      }
-
+      console.error("Registration error:", error.response?.data || error.message);
       setLoading(false);
       alert("Something went wrong.");
     }
@@ -91,6 +69,7 @@ const Register = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex justify-center items-center p-6 md:p-12">
         <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
+
           <h2 className="text-3xl font-bold mb-2 text-center text-gray-800">
             Register
           </h2>
