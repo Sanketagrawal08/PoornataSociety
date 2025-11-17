@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import api from "../api";
+import api from "../api"; // Axios instance with baseURL
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
+  // Load email saved at register step
   useEffect(() => {
     const storedEmail = localStorage.getItem("registerEmail");
     if (!storedEmail) {
@@ -17,8 +20,6 @@ const VerifyOtp = () => {
     setEmail(storedEmail);
   }, []);
 
-
-  const navigate = useNavigate()
   const handleVerify = async () => {
     if (!otp) {
       alert("Please enter OTP");
@@ -28,35 +29,30 @@ const VerifyOtp = () => {
     setLoading(true);
 
     try {
+      // axios handles Content-Type and JSON automatically
       const res = await api.post("/api/auth/verify-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, otp }),
+        email,
+        otp,
       });
 
-      const data = await res.json();
       setLoading(false);
 
-      if (!data.success) {
-        alert(data.message);
+      if (!res.data.success) {
+        alert(res.data.message);
         return;
       }
-      console.log(data)
-      // Store JWT token if exists
-      if (data.token) {
-        localStorage.setItem("authToken", data.token);
+
+      // Save token if received
+      if (res.data.token) {
+        localStorage.setItem("authToken", res.data.token);
       }
 
       alert("OTP Verified Successfully!");
       localStorage.removeItem("registerEmail");
-    
-      // Redirect to dashboard or home
-      navigate("/")
 
+      navigate("/");
     } catch (error) {
-      console.error(error);
+      console.error("Verify OTP Error:", error);
       setLoading(false);
       alert("Something went wrong!");
     }
