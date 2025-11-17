@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import api from "../api";
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState("");
@@ -27,7 +28,7 @@ const VerifyOtp = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/verify-otp", {
+      const res = await api.post("/api/auth/verify-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
