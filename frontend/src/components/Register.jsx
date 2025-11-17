@@ -14,51 +14,42 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleGetOTP = async () => {
-    const { name, email, phoneNo } = formData;
+ const handleGetOTP = async () => {
+  const { name, email, phoneNo } = formData;
 
-    if (!name || !email) {
-      alert("Name and Email are required.");
+  if (!name || !email) {
+    alert("Name and Email are required.");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await api.post("/api/auth/register", {
+      name,
+      email,
+      phone: phoneNo,
+    });
+
+    const data = res.data;
+    setLoading(false);
+
+    if (!data.success) {
+      alert(data.message);
       return;
     }
 
-    setLoading(true);
+    localStorage.setItem("registerEmail", email);
+    alert("OTP Sent! Please verify your email.");
+    window.location.href = "/verify-otp";
 
-    try {
-      const res = await api.post("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: phoneNo, // backend expects "phone"
-        }),
-      });
+  } catch (error) {
+    console.error("Error:", error);
+    setLoading(false);
+    alert("Something went wrong.");
+  }
+};
 
-      const data = await res.json();
-      setLoading(false);
-
-      if (!data.success) {
-        alert(data.message);
-        return;
-      }
-
-      // STORE email for verify OTP page
-      localStorage.setItem("registerEmail", email);
-
-      alert("OTP Sent! Please verify your email.");
-
-      // Redirect user to OTP page
-      window.location.href = "/verify-otp";
-
-    } catch (error) {
-      console.error("Error:", error);
-      setLoading(false);
-      alert("Something went wrong.");
-    }
-  };
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br bg-white">
