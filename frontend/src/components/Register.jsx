@@ -25,13 +25,13 @@ const Register = () => {
   setLoading(true);
 
   try {
-    const res = await api.post("/api/auth/register", {
+    const response = await api.post("/api/auth/register", {
       name,
       email,
       phone: phoneNo,
     });
 
-    const data = res.data;
+    const data = response.data;
     setLoading(false);
 
     if (!data.success) {
@@ -40,6 +40,7 @@ const Register = () => {
     }
 
     localStorage.setItem("registerEmail", email);
+
     alert("OTP Sent! Please verify your email.");
     window.location.href = "/verify-otp";
 
@@ -49,6 +50,7 @@ const Register = () => {
     alert("Something went wrong.");
   }
 };
+
 
 
   return (

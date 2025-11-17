@@ -27,7 +27,7 @@ function generateOtpString() {
 
 async function sendOtpEmail(email, otp) {
   await transporter.sendMail({
-   from: `"NoReply" u2414906@gmail.com`,
+   from: `"NoReply"`,
     to: email,
     subject: "Your OTP code",
     text: `Your OTP is ${otp}. It will expire in 2 minutes.`,

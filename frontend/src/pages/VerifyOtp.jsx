@@ -20,43 +20,43 @@ const VerifyOtp = () => {
     setEmail(storedEmail);
   }, []);
 
-  const handleVerify = async () => {
-    if (!otp) {
-      alert("Please enter OTP");
+ const handleVerify = async () => {
+  if (!otp) {
+    alert("Please enter OTP");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await api.post("/api/auth/verify-otp", {
+      email,
+      otp,
+    });
+
+    const data = response.data;
+    setLoading(false);
+
+    if (!data.success) {
+      alert(data.message);
       return;
     }
 
-    setLoading(true);
-
-    try {
-      // axios handles Content-Type and JSON automatically
-      const res = await api.post("/api/auth/verify-otp", {
-        email,
-        otp,
-      });
-
-      setLoading(false);
-
-      if (!res.data.success) {
-        alert(res.data.message);
-        return;
-      }
-
-      // Save token if received
-      if (res.data.token) {
-        localStorage.setItem("authToken", res.data.token);
-      }
-
-      alert("OTP Verified Successfully!");
-      localStorage.removeItem("registerEmail");
-
-      navigate("/");
-    } catch (error) {
-      console.error("Verify OTP Error:", error);
-      setLoading(false);
-      alert("Something went wrong!");
+    if (data.token) {
+      localStorage.setItem("authToken", data.token);
     }
-  };
+
+    alert("OTP Verified Successfully!");
+    localStorage.removeItem("registerEmail");
+    navigate("/");
+
+  } catch (error) {
+    console.error(error);
+    setLoading(false);
+    alert("Something went wrong!");
+  }
+};
+
 
   return (
     <div className="flex min-h-screen bg-gray-100 justify-center items-center p-4">
