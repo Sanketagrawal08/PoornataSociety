@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import herr from "../img/herr.jpg";
 import { User } from "lucide-react";
 import { useNavigate } from "react-router";
 import Modal from "./Modal";
 import { useAuth } from "../context/AuthContext";
+import UserNameAndDetails from "./UserNameAndDetails";
+import LogoutModal from "./LogoutModal";
 
 export default function Hero() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [logoutOpen, setLogoutOpen] = useState(false);
 
   const { user, logoutUser } = useAuth();
 
@@ -19,12 +22,10 @@ export default function Hero() {
 
       {/* Top Right Auth Button */}
       {user ? (
-        <h1       
-          className="absolute top-6 right-6 z-20 flex items-center gap-2 px-5 py-2 border-2 border-green-400 
-                     rounded-lg text-green-400 font-semibold hover:bg-green-400 hover:text-black transition-all"
-        >
-          Hello, {user.name.split(" ")[0]} 👋
-        </h1>
+        <UserNameAndDetails 
+          user={user} 
+          openLogoutModal={() => setLogoutOpen(true)}
+        />
       ) : (
         <button
           onClick={() => navigate("/register")}
@@ -41,7 +42,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center scale-105 brightness-75"
         style={{ backgroundImage: `url(${herr})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-transparent"></div>
       </div>
 
       {/* Content */}
@@ -63,18 +64,24 @@ export default function Hero() {
             Donate Now
           </button>
 
-          <button
-            onClick={handleOpenModal}
-            className="px-8 py-3 border-2 border-white text-white rounded-lg text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all"
-          >
-            Learn More
-          </button>
+          
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black to-transparent"></div>
 
+      {/* Donation Modal */}
       {isModalOpen && <Modal isOpen={isModalOpen} onClose={handleCloseModal} />}
+
+      {/* Logout Confirmation Modal */}
+      <LogoutModal
+        open={logoutOpen}
+        onClose={() => setLogoutOpen(false)}
+        onConfirm={() => {
+          logoutUser();
+          setLogoutOpen(false);
+        }}
+      />
     </section>
   );
 }
