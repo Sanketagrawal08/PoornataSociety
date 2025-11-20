@@ -12,7 +12,7 @@ const AddSomething = () => {
         e.preventDefault();
 
         if (!name || !email || !message || !category) {
-            alert("Please fill all required fields");
+            alert("Please fill all required ");
             return;
         }
 
