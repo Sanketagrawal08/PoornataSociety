@@ -61,7 +61,7 @@ export default function Hero() {
             onClick={handleOpenModal}
             className="px-8 py-3 bg-white text-gray-900 font-semibold rounded-lg text-lg shadow-md hover:shadow-xl transition-all"
           >
-            Donate
+            Donate Now.. 
           </button>
 
           
