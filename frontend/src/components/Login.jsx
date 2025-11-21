@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import api from "../api.js";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext.jsx";
-
+import logo from "../img/poornatalogo.png"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -135,7 +135,7 @@ const Login = () => {
       {/* Right Side */}
       <div className="hidden md:flex md:w-1/2 justify-center items-center bg-white">
         <img
-          src="/src/img/poornatalogo.png"
+          src={logo}
           className="w-2/3 h-auto opacity-90"
           alt="Logo"
         />

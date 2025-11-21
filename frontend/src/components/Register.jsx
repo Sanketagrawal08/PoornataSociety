@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import api from "../api";
 import { useAuth } from "../context/AuthContext";
-
+import logo from "../img/poornatalogo.png"
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -60,7 +60,7 @@ const Register = () => {
       {/* Left Logo */}
       <div className="hidden md:flex md:w-1/2 justify-center items-center bg-white">
         <img
-          src="/src/img/poornatalogo.png"
+          src={logo}
           className="w-2/3 h-auto opacity-90"
           alt="Logo"
         />
