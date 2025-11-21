@@ -60,7 +60,7 @@ const Register = () => {
       {/* Left Logo */}
       <div className="hidden md:flex md:w-1/2 justify-center items-center bg-white">
         <img
-          src="/src/img/poornata logo.png"
+          src="/src/img/poornatalogo.png"
           className="w-2/3 h-auto opacity-90"
           alt="Logo"
         />
