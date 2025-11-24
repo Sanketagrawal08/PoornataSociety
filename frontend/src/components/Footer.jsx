@@ -1,5 +1,5 @@
 import React from "react";
-import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Link2Off, Link } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
             empower youth and transform lives
           </p>
           <button className="bg-white text-orange-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105">
-            Donate Now
+            Join Now 
           </button>
         </div>
       </div>

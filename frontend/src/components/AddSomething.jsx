@@ -39,7 +39,7 @@ const AddSomething = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFF8F0] flex justify-center items-center py-10 px-4">
+        <div className="min-h-screen bg-linear-to-br from-orange-50 via-white to-orange-50 flex justify-center items-center py-10 px-4">
             <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-2xl">
                 <h1 className="text-3xl font-bold text-gray-900 mb-6 text-center">
                     Need Help? Submit Your Request

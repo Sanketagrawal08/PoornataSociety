@@ -48,7 +48,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-3xl">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
-          Empowering Youth to Build Their Future
+          Empowering Youth to Build Their <span className="text-[#ff6900]">Future</span>
         </h1>
 
         <p className="text-lg md:text-2xl text-gray-200 mb-10 leading-relaxed">
@@ -66,7 +66,9 @@ export default function Hero() {
 
           
         </div>
+        
       </div>
+      
 
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black to-transparent"></div>
 
@@ -82,6 +84,7 @@ export default function Hero() {
           setLogoutOpen(false);
         }}
       />
+      
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import React from "react";
-import { Heart, Users, Briefcase, GraduationCap, TrendingUp } from "lucide-react";
-
+import { Heart, Users, Briefcase, GraduationCap, TrendingUp, EyeOff, Eye } from "lucide-react";
 const Motive = () => {
   const ways = [
     {
@@ -27,6 +26,7 @@ const Motive = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50">
+      
       <div className="max-w-5xl mx-auto px-6 py-16">
         {/* Header */}
         <div className="text-center mb-16">
@@ -38,6 +38,21 @@ const Motive = () => {
           </h1>
           <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
         </div>
+
+{/* Our Vison Section */}
+         <div className="bg-white rounded-2xl shadow-xl p-10 mb-12 border border-orange-100">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+              <Eye className="w-6 h-6 text-white"/>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900">Our Vision</h2>
+          </div>
+          
+          <p className="text-lg text-gray-700 leading-relaxed">
+           <span className="font-semibold text-gray-500 leading-relaxed"> A society where every person regardless of background has the support, skills, and values to thrive professionally and personally</span>
+          </p>
+        </div>
+
 
         {/* Our Motive Section */}
         <div className="bg-white rounded-2xl shadow-xl p-10 mb-12 border border-orange-100">
@@ -97,3 +112,6 @@ const Motive = () => {
 };
 
 export default Motive;
+
+
+
