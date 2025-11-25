@@ -65,7 +65,7 @@ export default function Hero() {
           {/* -------------------------------------------- */}
           {/* LOGO + TITLE (RESPONSIVE FIX) */}
           {/* -------------------------------------------- */}
-          <div className="flex flex-col md:flex-row items-center md:items-center gap-4 mb-18  text-center md:text-left">
+          <div className="flex flex-col md:flex-row pt-10 items-center md:items-center gap-4 mb-18  text-center md:text-left">
 
             <img
               src={poornatalogo}
