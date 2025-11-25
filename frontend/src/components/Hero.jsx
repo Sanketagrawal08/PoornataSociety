@@ -74,10 +74,10 @@ export default function Hero() {
             />
 
             <div className="">
-              <h1 className="text-2xl sm:text-4xl md:text-4xl  bg-gradient-to-r from-orange-600 via-orange-200 to-white bg-clip-text text-transparent lg:text-5xl font-bold leading-tight  drop-shadow-1xl">
+              <h1 className="text-3xl sm:text-4xl md:text-3xl  bg-gradient-to-r from-orange-600 via-orange-200 to-white bg-clip-text text-transparent lg:text-6xl font-bold leading-tight  drop-shadow-1xl">
                 Poornata Social Welfare Foundation
               </h1>
-              <h3 className="text-lg sm:text-2xl md:text-3xl pb-3 text-gray-200 ">
+              <h3 className="text-lg sm:text-2xl md:text-3xl font-sans font-thin pb-3 text-gray-300 ">
                 Nurturing Harmony For All
               </h3>
             </div>
