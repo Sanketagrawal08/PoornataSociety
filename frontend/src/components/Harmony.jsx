@@ -1,64 +1,52 @@
 import React from 'react';
-import { Users, GraduationCap, Heart } from 'lucide-react';
+import { GraduationCap, Heart, BookCopyIcon, Users, Handshake, HandshakeIcon, HeartHandshake } from 'lucide-react';
+import EducationHarmony from '../cards/EducationHarmony';
+import Mentorship from '../cards/Mentorship';
+import SkillDevelopmentWorkshop from '../cards/SkillDevelopmentWorkshop';
+import ResourceAccess from '../cards/ResourceAccess';
+import CommunityEngagements from '../cards/CommunityEngagements';
 
 export default function Harmony() {
-  const cards = [
-    {
-      icon: Users,
-      title: "Community Development",
-      description: "Building stronger communities through collaborative initiatives and inclusive programs that bring people together."
-    },
-    {
-      icon: GraduationCap,
-      title: "Youth Empowerment",
-      description: "Providing young individuals with skills, knowledge, and opportunities to become responsible citizens and leaders."
-    },
-    {
-      icon: Heart,
-      title: "Social Welfare",
-      description: "Supporting vulnerable populations with essential services and creating pathways to sustainable livelihoods."
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-green-50 py-16 px-4">
       <div className="max-w-7xl mx-auto">
+        
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-600 via-orange-500 to-green-600 bg-clip-text text-transparent">
+      
+           <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-orange-500 rounded-full mb-6 shadow-lg">
+            <HeartHandshake className="w-10 h-10 text-white" />
+          </div>
+           <h1 className="text-5xl md:text-5xl font-bold mb-8 text-black ">
             Our Ways to Creating Harmony
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+           <p className="text-lg md:text-md text-gray-600 max-w-4xl mx-auto">
             We believe in a holistic approach to social welfare, addressing multiple aspects of community life to create lasting positive change.
           </p>
+          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full  mt-2"></div>
         </div>
 
         {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {cards.map((card, index) => {
-            const Icon = card.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
-              >
-                {/* Icon Container */}
-                <div className="bg-orange-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                  <Icon className="w-8 h-8 text-orange-500" strokeWidth={2} />
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
 
-                {/* Title */}
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  {card.title}
-                </h2>
+       
+          {/* Affordable Education Card */}
+<EducationHarmony />
 
-                {/* Description */}
-                <p className="text-gray-600 leading-relaxed">
-                  {card.description}
-                </p>
-              </div>
-            );
-          })}
+
+          {/* Card 2 */}
+         <Mentorship />
+
+          {/* Card 3 */}
+          <SkillDevelopmentWorkshop />
+          {/* <div className=""></div> */}
+
+          {/* Card 4 */}
+          <ResourceAccess />
+
+          {/* card 5 */}
+          <CommunityEngagements />
+
         </div>
       </div>
     </div>
