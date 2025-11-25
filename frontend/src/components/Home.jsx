@@ -4,12 +4,14 @@ import Motive from "../components/Motive";
 import Impact from "../components/Impact";
 import Footer from "../components/Footer";
 import AddSomething from "./AddSomething";
+import Harmony from "./Harmony";
 
 const Home = () => {
   return (
     <div>
       <Hero />
       <Motive />
+      <Harmony />
       <AddSomething />
       <Impact />
       <Footer />
