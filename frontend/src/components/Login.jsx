@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import api from "../api.js";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext.jsx";
-import logo from "../img/poornatalogo.png"
+import logo from "../img/poornatalogo.png";
+import BackButton from "../components/BackButton";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -62,7 +64,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="relative flex min-h-screen bg-white">
+
+      {/* Floating Back Button */}
+      <BackButton />
+
       {/* Left Side */}
       <div className="w-full md:w-1/2 flex justify-center items-center p-6 md:p-12">
         <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import api from "../api";
 import { useAuth } from "../context/AuthContext";
-import logo from "../img/poornatalogo.png"
+import logo from "../img/poornatalogo.png";
+import BackButton from "../components/BackButton";
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -10,7 +12,7 @@ const Register = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const { loginUser } = useAuth(); // keep, will use in verify page
+  const { loginUser } = useAuth(); // keep for future use
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -41,7 +43,6 @@ const Register = () => {
         return;
       }
 
-      // Save email for verify screen
       localStorage.setItem("registerEmail", email);
 
       alert("OTP Sent! Please verify your email.");
@@ -55,7 +56,10 @@ const Register = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br bg-white">
+    <div className="relative flex min-h-screen bg-white">
+
+      {/* Floating Back Button */}
+      <BackButton />
 
       {/* Left Logo */}
       <div className="hidden md:flex md:w-1/2 justify-center items-center bg-white">
