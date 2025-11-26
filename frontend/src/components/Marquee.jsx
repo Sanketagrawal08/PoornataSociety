@@ -1,5 +1,6 @@
 import React from "react";
 import "../index.css"; // for marquee animation
+import { HandshakeIcon } from "lucide-react";
 
 export default function Marquee() {
   return (
@@ -40,6 +41,9 @@ export default function Marquee() {
               <span className="text-2xl">💫</span>
               Join Poornata Foundation today!
             </span>
+             <button className="text-white bg-orange-600 py-1 px-2 rounded-xl text-lg md:text-xl font-semibold flex items-center gap-3">
+              <HandshakeIcon /> Join Now
+            </button>
             <span className="text-white/80 text-2xl">•</span>
           </div>
 
