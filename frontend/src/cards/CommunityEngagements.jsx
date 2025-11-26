@@ -4,7 +4,7 @@ import React from 'react'
 const CommunityEngagements = () => {
   return (
  
-<div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+<div className="bg-linear-to-br from-orange-50 via-white to-orange-50 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
 
   <div className="flex gap-3 items-center mb-6">
     <div className="bg-orange-50 w-16 h-16 rounded-2xl flex items-center justify-center">
