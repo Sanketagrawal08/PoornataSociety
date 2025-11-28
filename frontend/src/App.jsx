@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Register from './components/Register'
 import Login from './components/Login'
 import VerifyOtp from './pages/VerifyOtp'
+import ProgramDetails from './pages/ProgramDetails'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<Home />} />
+       <Route path='/programs/:slug' element={<ProgramDetails/>} />
         <Route path='/register' element={ <Register />} />
         <Route path='/login' element={ <Login />} />
         <Route path="verify-otp" element={<VerifyOtp />} />

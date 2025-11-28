@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import AddSomething from "./AddSomething";
 import Harmony from "./Harmony";
 import ProgramsAndInitiatives from "./ProgramsAndInitiatives";
+import ProgramDetails from "../pages/ProgramDetails";
 
 const Home = () => {
   return (
@@ -13,10 +14,10 @@ const Home = () => {
       <Hero />
       <Motive />
       <ProgramsAndInitiatives />
-      <Harmony />
+      {/* <Harmony /> */}
       <AddSomething />
       <Impact />
-      <Footer />
+      <Footer />  
     </div>
   );
 };

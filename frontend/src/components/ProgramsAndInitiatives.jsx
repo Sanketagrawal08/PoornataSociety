@@ -1,93 +1,91 @@
-import { BookOpen, Users, Wrench, FolderKanban, Handshake, Store, BarChart3, Sparkles, Briefcase } from "lucide-react";
 import React from "react";
+import { ArrowRight, BarChart3, Circle } from "lucide-react";
+import hindilogo from "../img/hindilogo.png";
+import { useNavigate } from "react-router-dom";
+import programs from "../data/programs";
 
 const ProgramsAndInitiatives = () => {
-
-  const items = [
-    {
-      icon: <BookOpen className="w-6 h-6" />,
-      title: "Affordable Education",
-      description: "Providing learning opportunities and essential resources at accessible costs.",
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: "Mentorship & Guidance",
-      description: "Connecting individuals with mentors for career, personal, and academic support.",
-    },
-    {
-      icon: <Wrench className="w-6 h-6" />,
-      title: "Skill Development Workshops",
-      description: "Hands-on training programs to help individuals grow professionally.",
-    },
-    {
-      icon: <FolderKanban className="w-6 h-6" />,
-      title: "Resource Access",
-      description: "Providing career kits, digital tools, and essential materials.",
-    },
-    {
-      icon: <Handshake className="w-6 h-6" />,
-      title: "Community Engagement Projects",
-      description: "Encouraging people to participate in meaningful social development activities.",
-    },
-    {
-      icon: <Briefcase className="w-6 h-6" />,
-      title: "Business Support",
-      description: "Guidance and help for youth and families to start or grow small businesses.",
-    },
-    {
-      icon: <Store className="w-6 h-6" />,
-      title: "Market Access",
-      description: "Providing platforms and support for selling products and services.",
-    },
-    {
-      icon: <Sparkles className="w-6 h-6" />,
-      title: "Nurture Self-Completeness",
-      description: "Helping individuals become self-reliant with confidence-building programs.",
-    },
-  ];
+  const navigate = useNavigate();
 
   return (
-    <div className="mb-12  bg-linear-to-br from-orange-50 via-white to-orange-50">
-      {/* Header */}
-      <div className="text-center mb-16">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-orange-500 rounded-full mb-6 shadow-lg">
-          <BarChart3 className="w-10 h-10 text-white" />
+    <div className="relative mb-12 bg-orange-50">
+      <div className="relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-orange-500 rounded-full mb-6 shadow-lg">
+            <BarChart3 className="w-10 h-10 text-white" />
+          </div>
+
+          <h1 className="text-5xl font-bold mb-8 text-black">
+            Our Programs & Initiatives
+          </h1>
+
+          <p className="text-lg text-gray-700 max-w-4xl mx-auto">
+            Creating opportunities through education, skills, resources, and
+            empowerment.
+          </p>
+
+          <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-2"></div>
         </div>
 
-        <h1 className="text-5xl md:text-5xl font-bold mb-8 text-black">
-          Our Programs & Initiatives
-        </h1>
+        <div className="grid md:grid-cols-3 gap-8 p-12">
+          {programs.map((item, index) => {
+            const Icon = item.icon;
 
-        <p className="text-lg md:text-md text-gray-600 max-w-4xl mx-auto">
-          Creating opportunities through education, skills, resources, and empowerment.
-        </p>
+            return (
+              <div
+                key={index}
+                className="relative rounded-xl shadow-lg border border-orange-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+              >
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 bg-contain bg-center"
+                  style={{
+                    backgroundImage: `url(${item.backgroundImageForCard})`,
+                  }}
+                ></div>
 
-        <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-2"></div>
-      </div>
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/70"></div>
 
-      {/* Cards Section */}
-      <div className="grid md:grid-cols-3 gap-8 p-8">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl shadow-lg p-8 border border-orange-100 hover:shadow-2xl transition-all duration-300"
-          >
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                <div className="text-white">{item.icon}</div>
+                {/* Content */}
+                <div className="relative p-7 text-white">
+                  <div className="flex text-center items-start gap-4 mb-3">
+                    {/* Icon */}
+                    {/* <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-md">
+                      <Icon className="w-8 h-8 text-white" />
+                    </div> */}
+
+                    {/* Title */}
+                    <div className="mx-auto">
+                      <h3 className="text-2xl text-center font-bold pt-2 pb-2">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Short Description */}
+                  <p className="leading-relaxed mb-2 text-white/90">
+                    • {item.shortDescription}
+                  </p>
+
+                  {/* Card Description */}
+                  <p className="leading-relaxed mb-4 text-white/90">
+                    • {item.cardDescription}
+                  </p>
+
+                  {/* View More Button */}
+                  <button
+                    onClick={() => navigate(`/programs/${item.slug}`)}
+                    className="mt-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl font-semibold
+                 flex items-center gap-2 hover:bg-white/30 transition"
+                  >
+                    View More <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
